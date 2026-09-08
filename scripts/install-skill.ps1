@@ -1,6 +1,6 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
-  [string]$SourceRoot = (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)),
+  [string]$SourceRoot = (Split-Path -Parent $PSScriptRoot),
   [string]$CodexHome = $(if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE '.codex' })
 )
 $ErrorActionPreference = 'Stop'
