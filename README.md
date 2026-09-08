@@ -1,5 +1,7 @@
 # Codex Windows UTF-8
 
+[![Windows UTF-8 regression](https://github.com/895122938/codex-windows-utf8/actions/workflows/windows.yml/badge.svg)](https://github.com/895122938/codex-windows-utf8/actions/workflows/windows.yml)
+
 A Codex Skill and small PowerShell toolkit for diagnosing and hardening Windows shell execution when UTF-8, Chinese/Japanese/Korean paths, or native-command output are unreliable.
 
 ## What it does
@@ -11,6 +13,12 @@ A Codex Skill and small PowerShell toolkit for diagnosing and hardening Windows 
 ## Install as a global Codex Skill
 
 Copy this folder to `%USERPROFILE%\\.codex\\skills\\codex-windows-utf8` (or to `%CODEX_HOME%\\skills\\codex-windows-utf8` when `CODEX_HOME` is set), then restart Codex if it does not discover the skill immediately.
+
+From a cloned checkout, preview the installer first:
+
+```powershell
+pwsh -NoProfile -File .\\scripts\\install-skill.ps1 -WhatIf
+```
 
 ## Verify
 
