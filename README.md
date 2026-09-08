@@ -33,6 +33,19 @@ Run the complete local test suite:
 pwsh -NoProfile -File .\\tests\\run-tests.ps1
 ```
 
+Run one read-only health check after a Codex or Windows update:
+
+```powershell
+pwsh -NoProfile -File .\\scripts\\health-check.ps1
+pwsh -NoProfile -File .\\scripts\\health-check.ps1 -Json > .\\health-report.json
+```
+
+The health check verifies the Skill files, records the active PowerShell and
+encoding state, runs the CJK/BOM-less UTF-8 regression, and records whether
+`codex doctor` loaded the configuration. A non-zero `codex doctor` exit caused
+by unrelated environment warnings is reported separately and does not hide a
+passing local encoding regression.
+
 The regression suite tests every locally available PowerShell edition, including Windows PowerShell 5.1 and PowerShell 7+, under `-NoProfile`.
 
 For an interactive PowerShell profile, preview the reversible change first:

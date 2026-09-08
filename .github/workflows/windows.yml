@@ -15,3 +15,9 @@ jobs:
       - name: Validate PowerShell syntax and behavior
         shell: pwsh
         run: ./tests/run-tests.ps1
+      - name: Run read-only health check (PowerShell 7)
+        shell: pwsh
+        run: ./scripts/health-check.ps1 -Json
+      - name: Run read-only health check (Windows PowerShell 5.1)
+        shell: powershell
+        run: ./scripts/health-check.ps1 -Json

@@ -17,7 +17,7 @@ Use this skill for Windows Codex shell diagnostics and remediation. Treat encodi
 ## Workflow
 
 1. Run `scripts/diagnose.ps1 -Json` and capture the actual executable, code pages, console encodings, `$OutputEncoding`, and default file encodings.
-2. Run `scripts/regression.ps1` in a temporary directory. It must cover CJK filenames, BOM-less UTF-8 reads/writes, pipelines, quoting, and both PowerShell editions when available.
+2. Run `scripts/regression.ps1` in a temporary directory. It must cover CJK filenames, BOM-less UTF-8 reads/writes, pipelines, quoting, and both PowerShell editions when available. For one auditable report that also checks the Skill files and Codex configuration, run `scripts/health-check.ps1 -Json`.
 3. If the tests fail, use `scripts/utf8-wrapper.ps1` for process-local execution. It initializes input/output and file cmdlet defaults before invoking the requested script.
 4. Prefer PowerShell 7+ when available. If 5.1 is unavoidable, keep the explicit initialization in the wrapper; do not rely on a profile because Codex may use `-NoProfile`.
 5. For interactive shells, offer `scripts/install-profile.ps1 -WhatIf` first, then install only with explicit user authorization. The script backs up an existing profile and supports `-Uninstall`.
