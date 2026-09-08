@@ -5,9 +5,10 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $skillName = 'codex-windows-utf8'
-$source = Join-Path $SourceRoot $skillName
-if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot 'SKILL.md'))) {
-  $source = $SourceRoot
+$source = if (Test-Path -LiteralPath (Join-Path $SourceRoot 'SKILL.md')) {
+  $SourceRoot
+} else {
+  Join-Path $SourceRoot $skillName
 }
 if (-not (Test-Path -LiteralPath (Join-Path $source 'SKILL.md'))) { throw "Skill source not found: $source" }
 $destination = Join-Path (Join-Path $CodexHome 'skills') $skillName
