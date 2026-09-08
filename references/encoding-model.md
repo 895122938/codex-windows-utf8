@@ -6,6 +6,7 @@ For Codex, an in-command initializer is more reliable than a user profile becaus
 
 Primary references:
 
+- https://github.com/openai/codex/issues/7290 (upstream `powershell_utf8` feature)
 - https://github.com/openai/codex/issues/23044
 - https://github.com/openai/codex/issues/4498
 - https://github.com/MicrosoftDocs/PowerShell-Docs/blob/main/reference/7.5/Microsoft.PowerShell.Core/About/about_Character_Encoding.md
