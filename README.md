@@ -37,22 +37,9 @@ Only run without `-WhatIf` when you explicitly want the profile change. Existing
 
 The toolkit does not change the Windows system locale, registry, or user profile automatically. Codex integration changes must be validated against the actual tool-execution path, including any `-NoProfile` or encoded-command wrapper.
 
-## Codex feature flag
+## Codex integration status
 
-Recent Codex builds expose the upstream experimental Windows UTF-8 path. Enable it in `%USERPROFILE%\\.codex\\config.toml`:
-
-```toml
-[features]
-powershell_utf8 = true
-```
-
-Or for a one-off CLI run:
-
-```powershell
-codex --enable powershell_utf8
-```
-
-This is the preferred integration path when the installed Codex version recognizes the flag. Keep the wrapper and tests because Skills and older builds may still execute through a separate shell path.
+An upstream experimental `powershell_utf8` flag was proposed in Codex issue #7290, but the current Codex CLI 0.153.4 feature registry does not expose that key. This project therefore does not enable an unrecognized flag. When a future Codex build exposes a supported UTF-8 or shell-version setting, add it only after verifying it with `codex features list` and `codex doctor`.
 
 ## Why this exists
 
