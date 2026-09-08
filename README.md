@@ -19,6 +19,14 @@ pwsh -NoProfile -File .\\scripts\\diagnose.ps1 -Json
 pwsh -NoProfile -File .\\scripts\\regression.ps1
 ```
 
+For an interactive PowerShell profile, preview the reversible change first:
+
+```powershell
+pwsh -NoProfile -File .\\scripts\\install-profile.ps1 -WhatIf
+```
+
+Only run without `-WhatIf` when you explicitly want the profile change. Existing profiles are copied to a `.codex-windows-utf8.bak` file; uninstall with `-Uninstall`.
+
 The toolkit does not change the Windows system locale, registry, or user profile automatically. Codex integration changes must be validated against the actual tool-execution path, including any `-NoProfile` or encoded-command wrapper.
 
 ## Why this exists
