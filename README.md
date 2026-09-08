@@ -19,6 +19,14 @@ pwsh -NoProfile -File .\\scripts\\diagnose.ps1 -Json
 pwsh -NoProfile -File .\\scripts\\regression.ps1
 ```
 
+Run the complete local test suite:
+
+```powershell
+pwsh -NoProfile -File .\\tests\\run-tests.ps1
+```
+
+The regression suite tests every locally available PowerShell edition, including Windows PowerShell 5.1 and PowerShell 7+, under `-NoProfile`.
+
 For an interactive PowerShell profile, preview the reversible change first:
 
 ```powershell

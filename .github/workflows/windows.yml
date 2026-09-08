@@ -1,0 +1,17 @@
+name: Windows UTF-8 regression
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate PowerShell syntax and behavior
+        shell: pwsh
+        run: ./tests/run-tests.ps1
