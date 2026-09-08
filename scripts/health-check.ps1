@@ -112,6 +112,9 @@ if ($codex) {
         Select-Object -First 1
       if ($featureLine) { $featureLines[$featureName] = $featureLine.Trim() }
     }
+    if (-not $featureLines.powershell_utf8) {
+      Add-ItemToList $warnings 'codex CLI does not advertise powershell_utf8; do not enable that flag'
+    }
   } catch {
     Add-ItemToList $warnings $_.Exception.Message
   }
