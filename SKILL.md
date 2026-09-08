@@ -20,6 +20,7 @@ Use this skill for Windows Codex shell diagnostics and remediation. Treat encodi
 2. Run `scripts/regression.ps1` in a temporary directory. It must cover CJK filenames, BOM-less UTF-8 reads/writes, pipelines, quoting, and both PowerShell editions when available.
 3. If the tests fail, use `scripts/utf8-wrapper.ps1` for process-local execution. It initializes input/output and file cmdlet defaults before invoking the requested script.
 4. Prefer PowerShell 7+ when available. If 5.1 is unavoidable, keep the explicit initialization in the wrapper; do not rely on a profile because Codex may use `-NoProfile`.
-5. For Codex integration changes, verify the wrapper invocation and rerun the regression suite. Do not claim a global fix until the actual Codex tool path passes the same tests.
+5. For interactive shells, offer `scripts/install-profile.ps1 -WhatIf` first, then install only with explicit user authorization. The script backs up an existing profile and supports `-Uninstall`.
+6. For Codex integration changes, verify the wrapper invocation and rerun the regression suite. Do not claim a global fix until the actual Codex tool path passes the same tests. A Skill cannot replace Codex's internal shell executable; distinguish skill guidance, profile configuration, and app-server fixes.
 
 Read [references/encoding-model.md](references/encoding-model.md) when explaining root causes or reviewing a proposed Codex wrapper change. Read [references/opensource-checklist.md](references/opensource-checklist.md) when packaging or publishing this skill.
