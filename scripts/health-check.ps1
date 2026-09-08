@@ -86,6 +86,10 @@ try {
 $codex = Get-Command codex -ErrorAction SilentlyContinue
 $doctorExitCode = $null
 $doctorConfigLoaded = $null
+$featureLines = [ordered]@{
+  powershell_utf8 = $null
+  powershell_shell_version = $null
+}
 if ($codex) {
   try {
     $doctorOutput = (& $codex.Source doctor --summary --no-color 2>&1 | Out-String)
@@ -96,6 +100,17 @@ if ($codex) {
     }
     if ($doctorExitCode -ne 0) {
       Add-ItemToList $warnings ("codex doctor exited with code $doctorExitCode; inspect doctor output separately for environment warnings")
+    }
+  } catch {
+    Add-ItemToList $warnings $_.Exception.Message
+  }
+  try {
+    $featureOutput = (& $codex.Source features list 2>&1 | Out-String)
+    foreach ($featureName in @('powershell_utf8', 'powershell_shell_version')) {
+      $featureLine = $featureOutput -split "`r?`n" |
+        Where-Object { $_ -match "^\s*$featureName\s+" } |
+        Select-Object -First 1
+      if ($featureLine) { $featureLines[$featureName] = $featureLine.Trim() }
     }
   } catch {
     Add-ItemToList $warnings $_.Exception.Message
@@ -120,6 +135,7 @@ $report = [ordered]@{
     path = if ($codex) { $codex.Source } else { $null }
     doctor_exit_code = $doctorExitCode
     doctor_config_loaded = $doctorConfigLoaded
+    feature_lines = $featureLines
   }
   warnings = @($warnings)
   errors = @($errors)

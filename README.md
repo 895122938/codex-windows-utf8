@@ -42,9 +42,11 @@ pwsh -NoProfile -File .\\scripts\\health-check.ps1 -Json > .\\health-report.json
 
 The health check verifies the Skill files, records the active PowerShell and
 encoding state, runs the CJK/BOM-less UTF-8 regression, and records whether
-`codex doctor` loaded the configuration. A non-zero `codex doctor` exit caused
-by unrelated environment warnings is reported separately and does not hide a
-passing local encoding regression.
+`codex doctor` loaded the configuration. It also records whether the installed
+CLI advertises a PowerShell UTF-8 feature, so an unsupported flag is never
+silently assumed. A non-zero `codex doctor` exit caused by unrelated environment
+warnings is reported separately and does not hide a passing local encoding
+regression.
 
 The regression suite tests every locally available PowerShell edition, including Windows PowerShell 5.1 and PowerShell 7+, under `-NoProfile`.
 
